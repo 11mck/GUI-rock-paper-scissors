@@ -1,0 +1,61 @@
+import os
+from tkinter import *
+from tkinter import ttk
+from random import choice
+from tkinter.messagebox import showinfo
+
+os.chdir('C:\\Users\\mck\\PycharmProjects\\pythonProject1\\a')
+options = ['rock', 'paper', 'scissors']
+comp = choice(options)
+
+user_score = 0
+comp_score = 0
+
+root = Tk()
+root.title('Rock Paper Scissors')
+rock_img = PhotoImage(file='rock.png')
+paper_img = PhotoImage(file='paper.png')
+scissors_img = PhotoImage(file='scissors.png')
+
+rock_btn = ttk.Button(root, text='Rock', image=rock_img, compound=LEFT, command=lambda: who_won('rock'))
+paper_btn = ttk.Button(root, text='Paper', image=paper_img, compound=LEFT, command=lambda: who_won('paper'))
+scissors_btn = ttk.Button(root, text='Scissors', image=scissors_img, compound=LEFT, command=lambda: who_won('scissors'))
+ttk.Label(root, text=f'User score: {user_score}').grid(row=0, column=0, sticky=W)
+ttk.Label(root, text=f'Computer score: {comp_score}').grid(row=0, column=1, sticky=W)
+rock_btn.grid(row=1, column=0, sticky=W)
+paper_btn.grid(row=2, column=0, sticky=W)
+scissors_btn.grid(row=3, column=0, sticky=W)
+
+print(comp)
+def score():
+    print(1)
+
+def who_won(value):
+    global comp_score
+    global user_score
+    if value == comp:
+        showinfo(title='END!', message='Draw!')
+    elif value == 'rock':
+        if comp == 'paper':
+            comp_score += 1
+            showinfo(title='END!', message=f'User: {value} Computer: {comp}. Computer won!')
+        else:
+            user_score += 1
+            showinfo(title='END!', message=f'User: {value} Computer: {comp}. User won!')
+    elif    value == 'paper':
+        if comp == 'scissors':
+            comp_score += 1
+            showinfo(title='END!', message=f'User: {value} Computer: {comp}. Computer won!')
+        else:
+            user_score += 1
+            showinfo(title='END!', message=f'User: {value} Computer: {comp}. User won!')
+    else:
+        if comp == 'rock':
+            comp_score += 1
+            showinfo(title='END!', message=f'User: {value} Computer: {comp}. Computer won!')
+        else:
+            user_score += 1
+            showinfo(title='END!', message=f'User: {value} Computer: {comp}. User won!')
+
+
+root.mainloop()
